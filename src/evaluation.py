@@ -1,9 +1,3 @@
-"""
-Fonctions réutilisables pour l'entraînement et l'évaluation des modèles ML.
-Utilisé par tous les notebooks 05_modeling_*, pour garantir une évaluation
-strictement identique d'un algorithme à l'autre.
-"""
-
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -15,11 +9,6 @@ from sklearn.metrics import (
 
 
 def evaluate_model(model, X_train, y_train, X_test, y_test, label=""):
-    """
-    Entraîne un modèle et calcule ses métriques sur le test set.
-
-    Retourne (model entraîné, y_pred, dict de métriques).
-    """
     start = time.time()
     model.fit(X_train, y_train)
     train_time = time.time() - start
@@ -38,11 +27,6 @@ def evaluate_model(model, X_train, y_train, X_test, y_test, label=""):
 
 
 def plot_confusion_matrices(configs, save_path=None, figsize=(11, 10)):
-    """
-    Affiche une grille de matrices de confusion.
-
-    configs : liste de tuples (y_true, y_pred, title)
-    """
     n = len(configs)
     n_cols = 2
     n_rows = (n + 1) // 2
@@ -70,5 +54,4 @@ def plot_confusion_matrices(configs, save_path=None, figsize=(11, 10)):
 
 
 def results_table(results_list):
-    """Construit un DataFrame récapitulatif à partir d'une liste de dicts de métriques."""
     return pd.DataFrame(results_list)
